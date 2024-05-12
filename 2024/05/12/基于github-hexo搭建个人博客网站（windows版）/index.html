@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+
+  
+  <title>&#39;基于github+hexo搭建个人博客网站（windows版）&#39; | DebugWang的个人博客站</title>
+
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <link rel="alternate" href="/atom.xml" title="DebugWang的个人博客站" type="application/atom+xml">
+  <meta name="description" content="1. 必要环境搭建（1） git安装：git下载并安装 （2）node.js安装：node.js下载并安装  下载资源文件夹修改：一般而言，npm默认安装依赖包时，下载的资源路径和安装的依赖包位置都默认在C盘中，如果我们希望自定义文件位置，则可以按照以下两种方式来实现：  命令行修改 12npm config set prefix &#x27;自定义依赖包安装路径&#x27;npm config">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&#39;基于github+hexo搭建个人博客网站（windows版）&#39;">
+<meta property="og:url" content="https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/index.html">
+<meta property="og:site_name" content="DebugWang的个人博客站">
+<meta property="og:description" content="1. 必要环境搭建（1） git安装：git下载并安装 （2）node.js安装：node.js下载并安装  下载资源文件夹修改：一般而言，npm默认安装依赖包时，下载的资源路径和安装的依赖包位置都默认在C盘中，如果我们希望自定义文件位置，则可以按照以下两种方式来实现：  命令行修改 12npm config set prefix &#x27;自定义依赖包安装路径&#x27;npm config">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/path-set.png">
+<meta property="og:image" content="https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/hexo-start-output.png">
+<meta property="og:image" content="https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/hexo-default-page.png">
+<meta property="og:image" content="https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/github-repo-build.png">
+<meta property="og:image" content="https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/git-bash.png">
+<meta property="og:image" content="https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/ssh-pub-add.png">
+<meta property="og:image" content="https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/git-links.png">
+<meta property="og:image" content="https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/github-code-pages.png">
+<meta property="og:image" content="https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/output.png">
+<meta property="og:image" content="https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/site.png">
+<meta property="article:published_time" content="2024-05-12T10:48:00.000Z">
+<meta property="article:modified_time" content="2024-05-12T11:21:26.152Z">
+<meta property="article:author" content="DenugWang">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="个人博客搭建">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/path-set.png">
+
+  <meta name="keywords" content=",hexo,个人博客搭建">
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="theme-color" content="#9C27B0">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="DebugWang的个人博客站">
+  <meta name="msapplication-starturl" content="https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/">
+  <meta name="msapplication-navbutton-color" content="#9C27B0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="DebugWang的个人博客站">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="/images/favicon.png">
+
+  
+    <link rel="canonical" href="https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/">
+  
+
+  
+  
+
+  
+  
+  
+
+  
+<link rel="stylesheet" href="/css/mdui.css">
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/custom.css">
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body class="mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink">
+  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <script>if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <script>var a=localStorage.getItem("mdui-drawer-close");if(!a){document.getElementsByTagName("body")[0].className+=" mdui-drawer-body-left"};</script>
+  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+    <a href="/" class="mdui-typo-headline">DebugWang的个人博客站</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: '搜索'}"><i class="mdui-icon material-icons">search</i></a>
+    <a href="/atom.xml" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'RSS'}"><i class="mdui-icon material-icons">rss_feed</i></a>
+  </div>
+</header>
+<div class="mdui-dialog" id="search">
+  
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="请输入关键字"><input type="hidden" name="sitesearch" value="https://mrdebugwang.github.io"></form>
+    <div class="search-result"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
+  <script>var a=localStorage.getItem("mdui-drawer-close");if(a){document.getElementById("sidebar").className+=" mdui-drawer-close"};</script>
+  <div class="mdui-grid-tile">
+    <img src="/images/banner.png" style="height: 160px;">
+    <img src="/images/avatar.jpg" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <div class="mdui-grid-tile-actions">
+      <div class="mdui-grid-tile-text">
+        <div class="mdui-grid-tile-title">DenugWang</div>
+        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i></div>
+      </div>
+      
+        <div class="mdui-grid-tile-buttons">
+          <a href="mailto:mrdebugwang@163.com" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'mrdebugwang@163.com'}"><i class="mdui-icon material-icons">email</i></a>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    <a href="/" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
+      <div class="mdui-list-item-content">主页</div>
+    </a>
+    <div class="mdui-collapse-item">
+      <script>var a=localStorage.getItem("mdui-collapse-item-0");if(a){document.getElementsByClassName("mdui-collapse-item")[0].className+=" mdui-collapse-item-open"};</script>
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">archive</i>
+        <div class="mdui-list-item-content">归档</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/archives/2024/05/">五月 2024<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <script>var a=localStorage.getItem("mdui-collapse-item-1");if(a){document.getElementsByClassName("mdui-collapse-item")[1].className+=" mdui-collapse-item-open"};</script>
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">class</i>
+        <div class="mdui-list-item-content">分类</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/categories/%E5%8D%83%E5%A5%87%E7%99%BE%E6%80%AA/">千奇百怪<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <script>var a=localStorage.getItem("mdui-collapse-item-2");if(a){document.getElementsByClassName("mdui-collapse-item")[2].className+=" mdui-collapse-item-open"};</script>
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+        <div class="mdui-list-item-content">标签</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/tags/hexo/" rel="tag">hexo<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" rel="tag">个人博客搭建<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <a href="/about" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
+      <div class="mdui-list-item-content">关于</div>
+    </a>
+  </div>
+
+  <div class="mdui-divider"></div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    
+      <a href="/timeline" class="mdui-list-item mdui-ripple">时间轴</a>
+    
+      <a href="/tagcloud" class="mdui-list-item mdui-ripple">标签云</a>
+    
+      <a href="/gallery" class="mdui-list-item mdui-ripple">相册</a>
+    
+    <div class="mdui-collapse-item">
+      <script>var a=localStorage.getItem("mdui-collapse-item-3");if(a){document.getElementsByClassName("mdui-collapse-item")[3].className+=" mdui-collapse-item-open"};</script>
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <div class="mdui-list-item-content">友情链接</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        
+          <a href="javascript:;" class="mdui-list-item mdui-p-l-2 mdui-text-color-theme mdui-ripple" style="justify-content: center;">链接为空</a>
+        
+      </div>
+    </div>
+  </div>
+</aside>
+
+  <main id="main" class="mdui-m-t-5 fadeIn animated">
+  
+<link rel="stylesheet" href="//cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <style>#main article .mdui-card-content .text-center{text-align:center!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="/images/random/material-5.png" style="max-height: 240px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">&#39;基于github+hexo搭建个人博客网站（windows版）&#39;</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2024-05-12 / <i class="iconfont">&#xe601;</i> DenugWang</div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">发送到手机</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="//qr.liantu.com/api.php?w=246&m=10&text=https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/">
+              
+            </li>
+          </ul>
+        
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
+          <ul class="mdui-menu" id="share_menu">
+            <li class="mdui-menu-item">
+              <a href="https://service.weibo.com/share/share.php?appkey=&title=&#39;基于github+hexo搭建个人博客网站（windows版）&#39;&url=https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/&pic=https://mrdebugwang.github.io/images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://twitter.com/intent/tweet?text=&#39;基于github+hexo搭建个人博客网站（windows版）&#39;&url=https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/&via=DenugWang" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://plus.google.com/share?url=https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/&title=&#39;基于github+hexo搭建个人博客网站（windows版）&#39;" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://connect.qq.com/widget/shareqq/index.html?site=DebugWang的个人博客站&title=&#39;基于github+hexo搭建个人博客网站（windows版）&#39;&pics=https://mrdebugwang.github.io/images/favicon.png&url=https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://telegram.me/share/url?url=https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/&text=&#39;基于github+hexo搭建个人博客网站（windows版）&#39;" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+            </li>
+          </ul>
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <h2 id="1-必要环境搭建"><a href="#1-必要环境搭建" class="headerlink" title="1. 必要环境搭建"></a>1. 必要环境搭建</h2><p>（1） git安装：<a target="_blank" rel="noopener" href="https://git-scm.com/">git</a>下载并安装</p>
+<p>（2）node.js安装：<a target="_blank" rel="noopener" href="https://nodejs.org/en">node.js</a>下载并安装</p>
+<ul>
+<li><p>下载资源文件夹修改：<br>一般而言，npm默认安装依赖包时，下载的资源路径和安装的依赖包位置都默认在C盘中，如果我们希望自定义文件位置，则可以按照以下两种方式来实现：</p>
+<ul>
+<li><p>命令行修改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set prefix &#x27;自定义依赖包安装路径&#x27;</span><br><span class="line">npm config set cache &#x27;自定义资源缓存路径&#x27;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>直接修改nodejs配置文件：一般而言，我们修改的是用户配置文件，node在启动时，这个配置文件会覆盖默认配置，这个文件一般为: <strong>C:\Users\当前账户\.npmrc</strong>，在文件中增加下面两个设置即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">prefix=&#x27;自定义依赖包安装路径&#x27;</span><br><span class="line">cache=&#x27;自定义资源缓存路径&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>[^用户配置文件查看]: 若找不到该文件，可以通过<code>npm config get userconfig</code>命令查看文件路径</p>
+</li>
+</ul>
+<p>注意如果修改了<code>prefix</code>则必须将该路径添加到系统变量中，操作如下：</p>
+<p><img src="/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/path-set.png" alt="path-set"></p>
+</li>
+</ul>
+<p>（3）相关依赖库安装：</p>
+<ul>
+<li>主题包安装：<code>npm install hexo-cli -g</code></li>
+<li>hexo远程推送依赖库安装：<code>npm install hexo-deployer-git --save</code></li>
+</ul>
+<h2 id="2-博客网站本地搭建"><a href="#2-博客网站本地搭建" class="headerlink" title="2. 博客网站本地搭建"></a>2. 博客网站本地搭建</h2><p>（1）在本地任意位置新建一个文件夹，作为后续个人博客网站项目的本地存放位置；如：<code>D:\MyBlogs\github-blogs\</code></p>
+<p>（2）打开cmd窗口，切换到目录<code>D:\MyBlogs\github-blogs\</code></p>
+<p><em>Tips: 你可以直接在该目录中文件管理器上将文件路径改为cmd回车就可以直接进入该目录下的cmd窗口</em></p>
+<p>（3）拉取<code>hexo</code>项目：cmd中执行<code>hexo init</code></p>
+<p>（4）编译生成静态网站：也就是生成<code>css</code>、<code>js</code>和<code>html</code>这些前端网站的文件。继续在cmd中执行<code>hexo g</code></p>
+<p>（5）启动nodejs服务，使网站运行：在cmd中执行<code>hexo s</code>，然后你会得到如下输出：</p>
+<p><img src="/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/hexo-start-output.png" alt="hexo-start-output"></p>
+<p>（6）然后，我们在浏览器输入<code>http://localhost:4000/</code>你就会得到这样的结果：</p>
+<p><img src="/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/hexo-default-page.png" alt="hexo-start-output"></p>
+<h2 id="3-github在线搭建环境准备"><a href="#3-github在线搭建环境准备" class="headerlink" title="3. github在线搭建环境准备"></a>3. github在线搭建环境准备</h2><p>（1）首先，我们需要创建一个github账号（free版就行）</p>
+<p>（2）然后，我们新建一个repo，命名规则（<strong>强制性</strong>）为：<code>你的账号名.github.io</code>，类型一定要是<code>public</code>（不然别人访问不了哦）<img src="/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/github-repo-build.png" alt="github-repo-build"></p>
+<p>（3）在本地项目文件夹下，鼠标右键打开<code>git bash</code></p>
+<p><img src="/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/git-bash.png" alt="git-bash"></p>
+<p>（4）在bash窗口中分别执行如下步骤：</p>
+<ul>
+<li><p><strong>配置git相关属性</strong>：使后续能正常链接到github</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;github用户名&quot; </span><br><span class="line">git config --global user.email &quot;github注册邮箱&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>配置ssh密钥</strong>，在后续链接github时，作CS匹配验证：</p>
+<ul>
+<li>首先，在bash窗口执行<code> ssh-keygen -t rsa</code>，生成<code>ssh公钥</code></li>
+<li>再执行：<code>clip &lt; ~/.ssh/id_rsa.pub</code>将生成的公钥复制到粘贴板</li>
+</ul>
+</li>
+</ul>
+<p>（5）<strong>github新增ssh公钥：</strong> <strong>Settings → SSH and GPG → New SSH keys</strong> 将公钥添加上去</p>
+<p><img src="/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/ssh-pub-add.png" alt="ssh-pub-add"></p>
+<h2 id="4-hexo在线部署"><a href="#4-hexo在线部署" class="headerlink" title="4. hexo在线部署"></a>4. hexo在线部署</h2><p>（1）修改<code>_config.yml</code>：新增如下修改：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:mrDebugWang/mrDebugWang.github.io.git # &#x27;你的repo的git地址&#x27;</span><br><span class="line">  branch: main # &#x27;想要推送的分支名称&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>repo地址查看方式如下：</p>
+<p><img src="/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/git-links.png" alt="git-links"></p>
+<p>（2）cmd执行<code>hexo clean</code>，清除之前生成的内容（每次修改都执行一次）</p>
+<p>（3）cmd执行<code>hexo g</code>，生成修改后的静态页面</p>
+<p>（4）cmd执行<code>hexo g &#39;你的github用户名&#39; &#39;你的github密码&#39;</code>，将静态页面部署到github中去</p>
+<h2 id="5-github页面查看"><a href="#5-github页面查看" class="headerlink" title="5. github页面查看"></a>5. github页面查看</h2><p>（1）静态页面部署后，请在github上查看是否存在如下类似文件（比如我上传的是master分支）：</p>
+<p><img src="/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/github-code-pages.png" alt="github-code-pages"></p>
+<p>（2）查看有效链接，在该repo中依次打开：Settings→Pages，然后下图中①②按类似选项设置（注意branch应该选择第4步中（1）中设置的branch）,保存（③）</p>
+<p><img src="/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/output.png" alt="output"></p>
+<p>再执行④（Visit site）,你就会看到如下内容：</p>
+<p><img src="/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/site.png" alt="site"></p>
+<h2 id="6-参考"><a href="#6-参考" class="headerlink" title="6. 参考"></a>6. 参考</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/weizhongqin-wcj/p/17554847.html">weizhongqin: 基于gitee+hexo搭建个人博客</a></li>
+</ol>
+
+      
+      <blockquote>
+        
+        <strong>本文链接：</strong><br><a href="https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/">https://mrdebugwang.github.io/2024/05/12/基于github-hexo搭建个人博客网站（windows版）/</a>
+      </blockquote>
+    </div>
+    <footer class="mdui-card-actions">
+      
+        <a class="mdui-ripple article_categories-link" href="/categories/%E5%8D%83%E5%A5%87%E7%99%BE%E6%80%AA/">千奇百怪</a>
+      
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/hexo/" rel="tag">hexo</a><a class="mdui-ripple article_tags-link" href="/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" rel="tag">个人博客搭建</a>
+      
+    </footer>
+    
+  </article>
+  
+<script src="//cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+
+
+
+
+</main>
+  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
+  <div class="mdui-p-y-0 mdui-text-center">
+    
+    
+    
+    
+    
+    
+    
+      <a href="https://mrdebugwang.github.io" target="_blank" class="mdui-btn mdui-btn-icon mdui-text-color-theme-a100"><i class="mdui-icon iconfont">&#xe7ab;</i></a>
+    
+    
+    
+      <a href="https://www.zhihu.com/people/mrdebugwang" target="_blank" class="mdui-btn mdui-btn-icon mdui-text-color-theme-a100"><i class="mdui-icon iconfont">&#xe6c0;</i></a>
+    
+    
+    
+    
+      <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzUzNDk1MTkwOA==#wechat_redirect" target="_blank" class="mdui-btn mdui-btn-icon mdui-text-color-theme-a100"><i class="mdui-icon iconfont">&#xe6e1;</i></a>
+    
+	
+      <a href="https://blog.csdn.net/qq_39842576" target="_blank" class="mdui-btn mdui-btn-icon mdui-text-color-theme-a100"><i class="mdui-icon iconfont">&#x17f36;</i></a>
+    
+  </div>
+  <div class="mdui-p-y-1 mdui-text-center">
+    Copyright &copy; 2024 DenugWang<br>
+    Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    
+  </div>
+</footer>
+
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_upward</i></button>
+  
+  
+<script src="/js/mdui.js"></script>
+<script src="/js/script.js"></script>
+
+  
+<script src="/custom.js"></script>
+
+</body>
+</html>
