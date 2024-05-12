@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/output.png">
 <meta property="og:image" content="https://mrdebugwang.github.io/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/site.png">
 <meta property="article:published_time" content="2024-05-12T10:48:00.000Z">
-<meta property="article:modified_time" content="2024-05-12T11:39:57.181Z">
+<meta property="article:modified_time" content="2024-05-12T13:35:20.146Z">
 <meta property="article:author" content="DenugWang">
 <meta property="article:tag" content="hexo">
 <meta property="article:tag" content="个人博客搭建">
@@ -192,7 +192,7 @@
   <style>#main article .mdui-card-content .text-center{text-align:center!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-17.png" style="max-height: 240px;">
+      <img src="/images/random/material-10.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title">&#39;基于github+hexo搭建个人博客网站（windows版）&#39;</div>
@@ -289,12 +289,6 @@
 <li>再执行：<code>clip &lt; ~/.ssh/id_rsa.pub</code>将生成的公钥复制到粘贴板</li>
 </ul>
 </li>
-<li><p>本地提交项目修改，以便后续git提交时能同步本地修改到服务器中（**&#x3D;&#x3D;注意这一步在每次修改时都需要执行，比如后续写博客提交时也需要执行&#x3D;&#x3D;**）</p>
-<ul>
-<li><strong>将本地所有修改提交到git暂存区（也就是提交我们生成的网站文件）</strong>：<code>git add -A .</code></li>
-<li><strong>将暂存区的修改提交到分支中去：</strong><code>git commit -m &#39;init&#39;</code> (<code>init</code>是对本次提交的描述，你可以自定义描述)</li>
-</ul>
-</li>
 </ul>
 <p>（5）<strong>github新增ssh公钥(公钥让我们可以与github服务器建立安全链接[必要])：</strong> <strong>Settings → SSH and GPG → New SSH keys</strong> 将公钥添加上去</p>
 <p><img src="/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/ssh-pub-add.png" alt="ssh-pub-add"></p>
@@ -303,9 +297,14 @@
 
 <p>repo地址查看方式如下：</p>
 <p><img src="/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/git-links.png" alt="git-links"></p>
-<p>（2）cmd执行<code>hexo clean</code>，清除之前生成的内容（每次修改都执行一次）</p>
-<p>（3）cmd执行<code>hexo g</code>，生成修改后的静态页面</p>
-<p>（4）cmd执行<code>hexo g &#39;你的github用户名&#39; &#39;你的github密码&#39;</code>，将静态页面部署到github中去</p>
+<p>（2）cmd执行<code>hexo clean</code>，清除之前生成的内容<strong>（每次修改都执行一次）</strong></p>
+<p>（3）cmd执行<code>hexo g</code>，生成修改后的静态页面<strong>（每次修改都执行一次）</strong></p>
+<p>（4）本地提交项目修改，以便后续git提交时能同步本地修改到服务器中<strong>（每次修改都执行一次）</strong></p>
+<ul>
+<li><strong>将本地所有修改提交到git暂存区（也就是提交我们生成的网站文件）</strong>：<code>git add -A .</code></li>
+<li><strong>将暂存区的修改提交到分支中去：</strong><code>git commit -m &#39;init&#39;</code> (<code>init</code>是对本次提交的描述，你可以自定义描述)</li>
+</ul>
+<p>（5）cmd执行<code>hexo d &#39;你的github用户名&#39; &#39;你的github密码&#39;</code>，将静态页面部署到github中去<strong>（每次修改都执行一次）</strong></p>
 <h2 id="5-github页面查看"><a href="#5-github页面查看" class="headerlink" title="5. github页面查看"></a>5. github页面查看</h2><p>（1）静态页面部署后，请在github上查看是否存在如下类似文件（比如我上传的是master分支）：</p>
 <p><img src="/2024/05/12/%E5%9F%BA%E4%BA%8Egithub-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%EF%BC%88windows%E7%89%88%EF%BC%89/github-code-pages.png" alt="github-code-pages"></p>
 <p>（2）查看有效链接，在该repo中依次打开：Settings→Pages，然后下图中①②按类似选项设置（注意branch应该选择第4步中（1）中设置的branch）,保存（③）</p>
